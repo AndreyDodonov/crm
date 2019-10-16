@@ -1,0 +1,19 @@
+{
+  "name": "crm",
+  "version": "1.0.0",
+  "description": "![learn project](https://img.shields.io/badge/Learn-learn%20project-orange.svg)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "keywords": [],
+  "author": "Andrew Dodonov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
