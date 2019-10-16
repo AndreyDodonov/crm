@@ -8,7 +8,7 @@ router.get('/', controller.getAll);
 router.get('/:id', controller.getById);
 router.delete('/:id', controller.remove);
 router.post('/:id', controller.create);
-router.post('/:id', controller.update);
+router.patch('/:id', controller.update);
 
 
 
