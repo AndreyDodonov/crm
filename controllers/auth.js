@@ -2,6 +2,7 @@
 const bcrypt = require('bcryptjs'),
       User = require('../models/User'),
       jwt = require('jsonwebtoken'),
+      errorHandler = require('../utils/errorHandlers'),
       keys = require('../config/keys');
 
 module.exports.login = async function(req, res) {
@@ -53,7 +54,7 @@ module.exports.register = async function(req, res) {
         await user.save();
          res.status(201).json(user);
         } catch(e) {
-            // TODO error code
+            errorHandler(res, e);
         }
     }
 };
