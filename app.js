@@ -3,6 +3,7 @@
 const express = require('express'),
       mongoose = require('mongoose'),
       bodyParser = require('body-parser'),
+      passport = require('passport'),
       keys = require('./config/keys'),
       authRouts = require('./routes/auth'),
       analyticRouts = require('./routes/analytic'),
@@ -20,6 +21,9 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useCreateIndex: true, u
     });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useCreateIndex', true);
+
+app.use(passport.initialize());
+require('./middleware/passport')(passport);
 
 app.use(require('morgan')('dev'));
 app.use(require('cors')());

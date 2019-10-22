@@ -19,7 +19,7 @@ module.exports.login = async function(req, res) {
             }, keys.jwt, {expiresIn: 3600}) ;
             res.status(200).json({
                 token: `Bearer ${token}`
-            })
+            });
         } else {
             //error. Password incorrect
             res.status(401).json({
