@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -11,14 +12,26 @@ import { Subscription } from 'rxjs';
 export class LoginPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  aSub: Subscription
+  aSub: Subscription;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) {
+
+               }
 
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
+    })
+
+    this.route.queryParams.subscribe((params:Params)=>{
+      if (params['registerd']) {
+        //теперь вы можете войти в систему, используя свои данные
+      } else if (params['accessDenied']) {
+        //Для начала авторизуйтесь в системе
+      }
     })
   }
 
@@ -35,7 +48,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       password: this.form.value.password
     }
     this.aSub = this.auth.login(user).subscribe(
-      () => console.log('login success'),
+      () => this.router.navigate(['/overview']),
       error => {console.warn(error)
       this.form.enable()
       }
