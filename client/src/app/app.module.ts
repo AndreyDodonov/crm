@@ -15,6 +15,7 @@ import { AnalyticsPageComponent } from './analytics-page/analytics-page.componen
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 
 
@@ -29,7 +30,8 @@ import { CategoryPageComponent } from './category-page/category-page.component';
     AnalyticsPageComponent,
     HistoryPageComponent,
     OrderPageComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
