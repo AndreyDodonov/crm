@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
-import {RegisterPageComponent} from './register-page/register-page.component'
-import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
-import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
-import { AuthGuard } from './shared/classes/auth.guard';
-import { OverviewPageComponent } from './overview-page/overview-page.component';
-import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
-import { HistoryPageComponent } from './history-page/history-page.component';
-import { OrderPageComponent } from './order-page/order-page.component';
-import { CategoryPageComponent } from './category-page/category-page.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {LoginPageComponent} from './login-page/login-page.component';
+import {RegisterPageComponent} from './register-page/register-page.component';
+import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
+import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.component';
+import {AuthGuard} from './shared/classes/auth.guard';
+import {OverviewPageComponent} from './overview-page/overview-page.component';
+import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
+import {HistoryPageComponent} from './history-page/history-page.component';
+import {OrderPageComponent} from './order-page/order-page.component';
+import {CategoryPageComponent} from './category-page/category-page.component';
+import {CategoriesFormComponent} from './category-page/categories-form/categories-form.component';
 
 
 const routes: Routes = [
-  { 
+  {
     path: '',
     component: AuthLayoutComponent,
     children: [
@@ -21,21 +22,23 @@ const routes: Routes = [
       {path: 'login', component: LoginPageComponent},
       {path: 'register', component: RegisterPageComponent}
     ]
-   },
-  { 
+  },
+  {
     path: '',
-    component: SiteLayoutComponent, canActivate: [AuthGuard],children: [
+    component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
       {path: 'overview', component: OverviewPageComponent},
       {path: 'analytics', component: AnalyticsPageComponent},
       {path: 'history', component: HistoryPageComponent},
       {path: 'order', component: OrderPageComponent},
-      {path: 'categories', component: CategoryPageComponent}
+      {path: 'categories', component: CategoryPageComponent},
+      {path: 'categories/new', component: CategoriesFormComponent}
     ]
-   }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
