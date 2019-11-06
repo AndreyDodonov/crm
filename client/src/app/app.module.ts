@@ -16,6 +16,7 @@ import { HistoryPageComponent } from './history-page/history-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { CategoriesFormComponent } from './category-page/categories-form/categories-form.component';
 
 
 
@@ -31,7 +32,8 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     HistoryPageComponent,
     OrderPageComponent,
     CategoryPageComponent,
-    LoaderComponent
+    LoaderComponent,
+    CategoriesFormComponent
   ],
   imports: [
     BrowserModule,

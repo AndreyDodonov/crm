@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from '../interfaces';
 import { Observable } from 'rxjs';
@@ -10,11 +10,11 @@ import { tap } from 'rxjs/operators';
 })
 
 export class AuthService {
-    private token = null
+    private token = null;
     constructor(private http: HttpClient) {}
 
-    register(user: User):Observable<User> {
-        return this.http.post<User>('/api/auth/register', user)
+    register(user: User): Observable<User> {
+        return this.http.post<User>('/api/auth/register', user);
     }
 
     login(user: User): Observable<{token: string}> {
@@ -22,28 +22,28 @@ export class AuthService {
       .pipe(
           tap(
               ({token}) => {
-                  localStorage.setItem('auth-token', token)
-                  this.setToken(token)
+                  localStorage.setItem('auth-token', token);
+                  this.setToken(token);
               }
           )
-      )
+      );
     }
 
-    setToken(token:string) {
-        this.token = token
+    setToken(token: string) {
+        this.token = token;
     }
 
     getToken(): string {
-        return this.token
+        return this.token;
     }
 
     isAuthenticated(): boolean {
-        return !!this.token
+        return !!this.token;
     }
 
     logout() {
-        this.setToken(null)
-        localStorage.clear()
+        this.setToken(null);
+        localStorage.clear();
     }
 
 }

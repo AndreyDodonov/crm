@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../shared/services/auth.service';
-import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MaterialService } from '../shared/classes/material.service';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AuthService} from '../shared/services/auth.service';
+import {Subscription} from 'rxjs';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {MaterialService} from '../shared/classes/material.service';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
               private router: Router,
               private route: ActivatedRoute) {
 
-               }
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -27,36 +27,36 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
 
-    this.route.queryParams.subscribe((params:Params)=>{
+    this.route.queryParams.subscribe((params: Params) => {
       if (params['registerd']) {
-        MaterialService.toast('теперь вы можете войти в систему, используя свои данные')       
+        MaterialService.toast('теперь вы можете войти в систему, используя свои данные');
       } else if (params['accessDenied']) {
-        MaterialService.toast('Для начала авторизуйтесь в системе')        
+        MaterialService.toast('Для начала авторизуйтесь в системе');
       } else if (params['sesionFailed']) {
-        MaterialService.toast('Войдите в систему заново')
+        MaterialService.toast('Войдите в систему заново');
       }
 
-    })
+    });
   }
 
   ngOnDestroy() {
-    if (this.aSub){
-    this.aSub.unsubscribe()
+    if (this.aSub) {
+      this.aSub.unsubscribe();
     }
   }
 
   onSubmit() {
     this.form.disable();
     const user = {
-      email:this.form.value.email,
+      email: this.form.value.email,
       password: this.form.value.password
     }
     this.aSub = this.auth.login(user).subscribe(
       () => this.router.navigate(['/overview']),
       error => {
-      MaterialService.toast(error.error.message)      
-      this.form.enable()
+        MaterialService.toast(error.error.message)
+        this.form.enable();
       }
-    )
+    );
   }
 }

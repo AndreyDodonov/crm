@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from '../shared/services/categories.service';
-import { Category } from '../shared/interfaces';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {CategoriesService} from '../shared/services/categories.service';
+import {Category} from '../shared/interfaces';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-category-page',
@@ -10,17 +10,14 @@ import { Observable } from 'rxjs';
 })
 export class CategoryPageComponent implements OnInit {
 
-  
-  categories$: Observable<Category[]>
+  categories$: Observable<Category[]>;
 
-  constructor(private categoriesServise: CategoriesService) { }
+  constructor(private categoriesService: CategoriesService) {
+  }
 
   ngOnInit() {
-    
-    this.categories$ = this.categoriesServise.fetch()
-
-    }
-
+    this.categories$ = this.categoriesService.fetch();
   }
+}
 
 
