@@ -31,7 +31,8 @@ const routes: Routes = [
       {path: 'history', component: HistoryPageComponent},
       {path: 'order', component: OrderPageComponent},
       {path: 'categories', component: CategoryPageComponent},
-      {path: 'categories/new', component: CategoriesFormComponent}
+      {path: 'categories/new', component: CategoriesFormComponent},
+      {path: 'categories/:id', component: CategoriesFormComponent}
     ]
   }
 ];

@@ -17,6 +17,7 @@ import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { CategoriesFormComponent } from './category-page/categories-form/categories-form.component';
+import { PostionsFormComponent } from './category-page/categories-form/postions-form/postions-form.component';
 
 
 
@@ -33,7 +34,8 @@ import { CategoriesFormComponent } from './category-page/categories-form/categor
     OrderPageComponent,
     CategoryPageComponent,
     LoaderComponent,
-    CategoriesFormComponent
+    CategoriesFormComponent,
+    PostionsFormComponent
   ],
   imports: [
     BrowserModule,
