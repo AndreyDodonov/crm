@@ -3,15 +3,12 @@
 const Position = require('../models/Position'),
       errorHandler = require('../utils/errorHandlers');
 
-module.exports.getByCategoryId = async function(req, res) {
+module.exports.getAll = async function(req, res) {
     try {
-        const positions = await Position.find({
-            category: req.params.categoryId,
-            user: req.user.id
-        });
-        res.status(200).json(positions);
-    } catch(e) {
-        errorHandler(res, e);
+        const positions = await Position.find({category: req.params.category, user: req.user.id})
+        res.status(200).json(positions)
+    } catch (e) {
+        errorHandler(res, e)
     }
 };
 
