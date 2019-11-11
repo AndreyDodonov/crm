@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../shared/services/categories.service';
 import {switchMap} from 'rxjs/operators';
@@ -22,7 +22,8 @@ export class CategoriesFormComponent implements OnInit {
   category: Category;
 
   constructor(private route: ActivatedRoute,
-              private categoriesService: CategoriesService) {
+              private categoriesService: CategoriesService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -36,9 +37,9 @@ export class CategoriesFormComponent implements OnInit {
       .pipe(
         switchMap(
           (params: Params) => {
-            if (params['id']) {
+            if (params.id) {
               this.isNew = false;
-              return this.categoriesService.getById(params['id']);
+              return this.categoriesService.getById(params.id);
             }
             return of(null);
           }
@@ -61,19 +62,33 @@ export class CategoriesFormComponent implements OnInit {
         }
       );
   }
+
   triggerClick() {
     this.inputRef.nativeElement.click();
   }
 
-  onFileUpload(event: any) {     // event:Event
-      const file = event.target.files[0];
-      this.image = file;
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result;
-      };
+  deleteCategory() {
+    const decision = window.confirm(`Вы уверены, что хотите удалить категорию ${this.category.name}?`);
 
-      reader.readAsDataURL(file);
+    if (decision) {
+      this.categoriesService.delete(this.category._id)
+        .subscribe(
+          response => MaterialService.toast(response.message),
+          error => MaterialService.toast(error.error.message),
+          () => this.router.navigate(['/categories'])
+        );
+    }
+  }
+
+  onFileUpload(event: any) {     // event:Event
+    const file = event.target.files[0];
+    this.image = file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+
+    reader.readAsDataURL(file);
   }
 
   onSubmit() {
@@ -83,7 +98,7 @@ export class CategoriesFormComponent implements OnInit {
     if (this.isNew) {
       obs$ = this.categoriesService.create(this.form.value.name, this.image);
     } else {
-      obs$ = this.categoriesService.update(this.category._id , this.form.value.name, this.image);
+      obs$ = this.categoriesService.update(this.category._id, this.form.value.name, this.image);
     }
 
     obs$.subscribe(
@@ -96,7 +111,7 @@ export class CategoriesFormComponent implements OnInit {
         MaterialService.toast(error.error.message);
         this.form.enable();
       }
-    )
+    );
   }
 
 }
