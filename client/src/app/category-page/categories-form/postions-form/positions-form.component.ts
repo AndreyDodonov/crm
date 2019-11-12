@@ -20,6 +20,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   modal: MaterialInstance;
   form: FormGroup;
   positionId: string = null;
+  isNew: boolean;
 
   constructor(private positionsService: PositionsService) {
   }
@@ -46,6 +47,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   onSelectPosition(position: Position) {
+    this.isNew = false;
     this.positionId = position._id;
     this.form.patchValue({
       name: position.name,
@@ -56,6 +58,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   onAddPosition() {
+    this.isNew = true;
     this.positionId = null;
     this.form.patchValue({
       name: null,
