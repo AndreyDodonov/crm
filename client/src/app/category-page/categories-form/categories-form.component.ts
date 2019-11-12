@@ -12,6 +12,7 @@ import {Category} from '../../shared/interfaces';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css']
 })
+
 export class CategoriesFormComponent implements OnInit {
 
   @ViewChild('input', {static: false}) inputRef: ElementRef;
