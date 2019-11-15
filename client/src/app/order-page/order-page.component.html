@@ -51,9 +51,10 @@
     >Отмена
     </button>
     <button
+      [disabled]="pending"
       class="modal-action btn waves-effect"
       (click)="submit() "
-      [disabled]="order.list.length === 0"
+      [disabled]="order.list.length === 0 || pending"
     >Подтвердить
     </button>
   </div>
