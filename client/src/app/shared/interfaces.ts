@@ -28,7 +28,7 @@ export interface Order {
   date?: Date;
   order?: number;
   user?: string;
-  list: any[];
+  list: OrderPosition[];
   _id?: string;
 }
 
