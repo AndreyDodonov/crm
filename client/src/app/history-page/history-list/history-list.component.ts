@@ -37,8 +37,6 @@ export class HistoryListComponent implements OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.modal = MaterialService.initModal(this.modalRef);
-    // todo: error (((
-    console.log('сработало ', this.modal);
   }
 
 }
