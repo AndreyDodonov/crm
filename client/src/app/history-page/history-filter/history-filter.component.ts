@@ -55,9 +55,10 @@ export class HistoryFilterComponent implements  OnDestroy, AfterViewInit {
 
   clearFilter() {
 
-    // TODO: realize clear
+    const filter: Filter = {};
 
-    console.log('Здесь будет очистка поиска ))... скоро');
+    this.onFilter.emit(filter);
+
   }
 
 }
