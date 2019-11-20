@@ -2,10 +2,11 @@
 
 const express = require('express'),
       router = express.Router(),
-      controller = require('../controllers/analytic');
+      controller = require('../controllers/analytic'),
+      passport = require('passport');
 
-router.get('/overview', controller.overview);
-router.get('/analytic', controller.analytic);
+router.get('/overview', passport.authenticate('jwt', {session: false}), controller.overview);
+router.get('/analytic', passport.authenticate('jwt', {session: false}), controller.analytic);
 
 
 
