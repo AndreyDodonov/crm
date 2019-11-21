@@ -8,7 +8,7 @@ const FDate = 'DD.MM.YYYY'; // date format fo moment.js
 
 module.exports.overview = async function (req, res) {
     try {
-        const allOrders = await Order.find({user: req.user.id}).sort(1); // list of all orders
+        const allOrders = await Order.find({user: req.user.id}).sort({date: 1}); // list of all orders
         const ordersMap = getOrdersMap(allOrders); // grouping by day of the week
         const yesterdayOrders = ordersMap[moment().add(-1, 'd').format(FDate)] || [];
 
