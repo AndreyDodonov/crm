@@ -10,6 +10,7 @@ export class AnalyticsPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
