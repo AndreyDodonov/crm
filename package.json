@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "![learn project](https://img.shields.io/badge/Learn-learn%20project-orange.svg)",
   "main": "index.js",
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.9.0"
+  },
   "scripts": {
     "start": "node index",
     "develop": "nodemon index",
     "client-install": "npm install --prefix client",
     "client-start": "npm run start --prefix client",
-    "dev": "concurrently \"npm run develop\" \"npm run client-start\""
+    "dev": "concurrently \"npm run develop\" \"npm run client-start\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run build --prefix client"
   },
   "keywords": [],
   "author": "Andrew Dodonov",
