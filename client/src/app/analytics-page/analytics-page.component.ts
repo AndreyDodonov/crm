@@ -44,7 +44,7 @@ export class AnalyticsPageComponent implements OnDestroy, AfterViewInit {
       this.average = data.average;
 
       gainConfig.labels = data.chart.map(item => item.label);
-      gainConfig.data = data.chart.map(item => item.gain)
+      gainConfig.data = data.chart.map(item => item.gain);
 
       orderConfig.labels = data.chart.map(item => item.label);
       orderConfig.data = data.chart.map(item => item.order);
@@ -55,7 +55,10 @@ export class AnalyticsPageComponent implements OnDestroy, AfterViewInit {
       const orderContext = this.orderRef.nativeElement.getContext('2d');
       orderContext.canvas.height = '300 px';
 
+      // tslint:disable-next-line:no-unused-expression
       new Chart(gainContext, createChartConfig(gainConfig));
+
+      // tslint:disable-next-line:no-unused-expression
       new Chart(orderContext, createChartConfig(orderConfig));
 
       this.pending = false;

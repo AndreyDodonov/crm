@@ -10,7 +10,8 @@ const express = require('express'),
       categoryRouts = require('./routes/category'),
       orderRouts = require('./routes/order'),
       positionRouts = require('./routes/position'),
-      app = express();
+      app = express(),
+      path = require('path');
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
     .then ( () => {
@@ -36,5 +37,17 @@ app.use('/api/analytic', analyticRouts);
 app.use('/api/category', categoryRouts);
 app.use('/api/order', orderRouts);
 app.use('/api/position', positionRouts);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('/client/dist/client'));
+
+    app.get('*', (req, res) => {
+       res.sendfile(
+           path.resolve(
+               __dirname, 'client', 'dist', 'client', 'index.html'
+           )
+       )
+    });
+}
 
 module.exports = app;
