@@ -1,5 +1,5 @@
 ![learn project](https://img.shields.io/badge/Learn-learn%20project-orange.svg)
-
+[![Build Status](https://travis-ci.com/AndreyDodonov/crm.svg?branch=master)](https://travis-ci.com/AndreyDodonov/crm)
 ### CRM system
 
 v 0.1 pre-alpha
